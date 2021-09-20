@@ -6,21 +6,8 @@ import Card from "./components/UI/Card";
 import NewUser from "./components/NewUser/NewUser";
 import UsersList from "./components/Users/UsersList";
 
-const DUMMY_USERS = [
-  {
-    id: "e1",
-    name: "Fajar",
-    age: 21,
-  },
-  {
-    id: "e2",
-    name: "Syifa",
-    age: 16,
-  },
-];
-
 const App = () => {
-  const [usersList, setUsersList] = useState(DUMMY_USERS);
+  const [usersList, setUsersList] = useState([]);
 
   const addUserHandler = (users) => {
     setUsersList((prevUsersList) => {
@@ -33,7 +20,9 @@ const App = () => {
       <Card className={styles.users}>
         <NewUser onAddUser={addUserHandler} />
       </Card>
-      <Card className={styles.users}>
+      <Card
+        className={`${styles.users} ${usersList.length === 0 && styles.empty}`}
+      >
         <UsersList items={usersList} />
       </Card>
     </div>
