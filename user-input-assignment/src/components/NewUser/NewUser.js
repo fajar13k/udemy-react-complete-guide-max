@@ -18,6 +18,13 @@ const NewUser = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
 
+    const userData = {
+      id: Math.random().toString(),
+      name: enteredName,
+      age: enteredAge,
+    };
+
+    props.onAddUser(userData);
     setEnteredName("");
     setEnteredAge("");
   };
