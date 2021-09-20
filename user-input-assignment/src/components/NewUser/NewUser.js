@@ -6,6 +6,7 @@ import styles from "./NewUser.module.css";
 const NewUser = (props) => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
+  // const [error, setError] = useState();
 
   const nameChangeHandler = (event) => {
     setEnteredName(event.target.value);
@@ -18,12 +19,29 @@ const NewUser = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
 
+    if (enteredName.length === 0 || enteredAge.length === 0) {
+      // setError({
+      //   title: "Invalid input",
+      //   message: "Please fill all the forms before submitting!",
+      // });
+      return;
+    }
+
+    if (+enteredAge < 1) {
+      // setError({
+      //   title: "Invalid age",
+      //   message: "You must be at least 1 year old",
+      // });
+      return;
+    }
+
     const userData = {
       id: Math.random().toString(),
       name: enteredName,
       age: enteredAge,
     };
 
+    // props.onModalError(error);
     props.onAddUser(userData);
     setEnteredName("");
     setEnteredAge("");
