@@ -31,9 +31,11 @@ import styles from "./Button.module.css";
 // `;
 
 const Button = (props) => {
+  const { children, type, onClick } = props;
+
   return (
-    <button type={props.type} className={styles.button} onClick={props.onClick}>
-      {props.children}
+    <button type={type} className={styles.button} onClick={onClick}>
+      {children}
     </button>
   );
 };
